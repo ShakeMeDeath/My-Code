@@ -1,3 +1,3 @@
 from PlanetManager import *
 
-Planet_List: dict = {'Base': }
+print(Planet_List)

@@ -1,9 +1,10 @@
+import random
 from DevFunctions import AlertPrint
 
 Current_Planet: str = ''
-Planet_List: dict = {'Base': "hem"}
+Planet_List: dict = {'Base': ['1', {}, 30_000]}
 
-def MakePlanet(Name: str,Size: int, Resources: dict, Distance: int):
+def MakePlanet(Name: str, Size: int, Resources: dict[str: int], Distance: int):
     Planet_List[Name] = [Size, Resources, Distance]
 
 def GoTo(Name: str, Speed: int):
@@ -18,9 +19,8 @@ def GoTo(Name: str, Speed: int):
         AlertPrint(f'Invalid Planet Name ! "{Name}"', 'error')
 
 def GenerateGalaxy(size: int) -> dict:
+    """
+    Update here later
+    """
     for i in range(size):
-        MakePlanet()
-
-MakePlanet('Planet1344', 2, {'hem': 1, "titanium": 2}, 34)
-print(Planet_List)
-GoTo('Planet1344', 3)
+        MakePlanet(f'Planet{i}', random.randint(1, 3), {'idk': 2}, random.randint(1, 50_000))
