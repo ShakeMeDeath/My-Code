@@ -1,8 +1,9 @@
 import random
 from DevFunctions import AlertPrint
+from MaterialList import MakePlanetMaterials
 
 Current_Planet: str = ''
-Planet_List: dict = {'Base': ['1', {}, 30_000]}
+Planet_List: dict = {'Base': ['1', MakePlanetMaterials(2, random.randint(2, 3)), 30_000]}
 
 def MakePlanet(Name: str, Size: int, Resources: dict[str: int], Distance: int):
     Planet_List[Name] = [Size, Resources, Distance]

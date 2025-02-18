@@ -30,7 +30,7 @@ def MakePlanetMaterials(Richness: int, size: int) -> dict:
         AlertPrint(f'Size must be between 1 and 3 ! but got {size}', 'error')
     else:
         ouput_dict['size'] = size
-        
+
     for i in range(Richness):
         rand_num: int = random.randint(1, 100)
         if rand_num > 0 and rand_num <= 50:
@@ -46,5 +46,3 @@ def MakePlanetMaterials(Richness: int, size: int) -> dict:
             ouput_dict[random.choice(Very_Rare_Materials)] = random.randint(1, 4)
 
     return ouput_dict
-
-print(MakePlanetMaterials(3, random.randint(1, 3)))
