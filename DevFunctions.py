@@ -1,4 +1,4 @@
-def Alert_Print(message: str, type: str) -> None:
+def AlertPrint(message: str, type: str) -> None:
     """
     Prints alert messages Easly
 
