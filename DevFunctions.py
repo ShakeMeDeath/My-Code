@@ -2,6 +2,10 @@ def AlertPrint(message: str, type: str) -> None:
     """
     Prints alert messages Easly
 
+    >>> error
+    >>> info
+    >>> test
+
     :Exemple:
     >>> Alert_Print('hello !', 'info')
     >>> output : INFO # hello !
