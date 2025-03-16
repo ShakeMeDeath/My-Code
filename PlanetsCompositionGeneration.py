@@ -16,26 +16,10 @@ possible_materials = {
     "ruby": 3
 }
 
-common_materials: list = [
-    "basalt",
-    "iron",
-    "coal",
-]
+common_materials: list = [x for x in list(possible_materials.keys()) if possible_materials[x] == 1]
+uncommon_materials: list = [x for x in list(possible_materials.keys()) if possible_materials[x] == 2]
+rare_materials: list = [x for x in list(possible_materials.keys()) if possible_materials[x] == 3]
 
-uncommon_materials: list = [
-    "copper",
-    "aluminium",
-    "diamond",
-    "platinum",
-    "gold",
-]
-
-rare_materials: list = [
-    "titanium",
-    "tungsten",
-    "uranium",
-    "ruby",
-]
 
 def CreateMaterialComp(size: int) -> dict:
     output_material_type: str = ''

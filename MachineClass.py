@@ -9,6 +9,9 @@ class Machine:
         self.planet_location: object = planet_location
 
         planet_location.machines.append(self)
+
+    def delete(self):
+        del __class__.planets_list[self]
         
 
     def MachineUpgrade(self):
