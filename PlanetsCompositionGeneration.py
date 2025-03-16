@@ -8,71 +8,108 @@ possible_materials = {
     "copper": 2,
     "aluminium": 2,
     "diamond": 2,
-    "platinum": 3,
-    "gold": 3,
+    "platinum": 2,
+    "gold": 2,
     "titanium": 3,
-    "tungsten": 4,
-    "uranium": 4,
-    "ruby": 4
+    "tungsten": 3,
+    "uranium": 3,
+    "ruby": 3
 }
 
-
-common_materials = [
+common_materials: list = [
     "basalt",
-    "iron",  
-    "coal" 
+    "iron",
+    "coal",
 ]
 
-uncommon_materials = [
-    "copper",        
-    "aluminium",     
-    "diamond"        
+uncommon_materials: list = [
+    "copper",
+    "aluminium",
+    "diamond",
+    "platinum",
+    "gold",
 ]
 
-rare_materials = [
-    "platinum",      
-    "gold",          
-    "titanium"        
+rare_materials: list = [
+    "titanium",
+    "tungsten",
+    "uranium",
+    "ruby",
 ]
 
-very_rare_materials = [
-    "tungsten",       
-    "uranium",      
-    "ruby"      
-]
+def CreateMaterialComp(size: int) -> dict:
+    output_material_type: str = ''
+    output_material_quantity: list = [0, 0]
 
+    material_rarity: int = random.randint(1, 100)
+    if size == 1:
+        if material_rarity >= 1 and material_rarity <= 80:
+            output_material_type = common_materials[random.randint(0, len(common_materials)-1)]
 
-def GenMaterialComp(material: str) -> dict:
-    if possible_materials[material] not in [1, 2, 3, 4]:
-        AlertPrint(f'Rarity not between the set range (1 - 4) ! "{possible_materials[material]}"',"error")
+        elif material_rarity >= 81 and material_rarity <= 98:
+            output_material_type = uncommon_materials[random.randint(0, len(uncommon_materials)-1)]
 
-    elif material in possible_materials:
-        if possible_materials[material] == 1:
-            ouput_rarity = random.randint(0, 5)
+        elif material_rarity >= 99 and material_rarity <= 100:
+            output_material_type = rare_materials[random.randint(0, len(rare_materials)-1)]
 
-        elif possible_materials[material] == 2:
-            ouput_rarity = random.randint(6, 9)
+    elif size == 2:
+        if material_rarity >= 1 and material_rarity <= 70:
+            output_material_type = common_materials[random.randint(0, len(common_materials)-1)]
 
-        elif possible_materials[material] == 3:
-            ouput_rarity = random.randint(10, 12)
+        elif material_rarity >= 71 and material_rarity <= 94:
+            output_material_type = uncommon_materials[random.randint(0, len(uncommon_materials)-1)]
 
-        elif possible_materials[material] == 4:
-            ouput_rarity = 13
+        elif material_rarity >= 95 and material_rarity <= 100:
+            output_material_type = rare_materials[random.randint(0, len(rare_materials)-1)]
 
-        return {material: ouput_rarity}
-    else:
-        AlertPrint(f'Not an existing/declared material type ! {material}', "error")
+    elif size == 3:
+        if material_rarity >= 1 and material_rarity <= 66:
+            output_material_type = common_materials[random.randint(0, len(common_materials)-1)]
 
-def GenPlanetComp() -> dict:
-    output_material_gen: dict = {}
-    for item in possible_materials:
-        material_chance: int = random.randint(0, 13)
+        elif material_rarity >= 67 and material_rarity <= 91:
+            output_material_type = uncommon_materials[random.randint(0, len(uncommon_materials)-1)]
 
-        output_material_gen[item] = mat
-        
+        elif material_rarity >= 92 and material_rarity <= 100:
+            output_material_type = rare_materials[random.randint(0, len(rare_materials)-1)]
 
+    if size == 1:
+        output_material_quantity[0] = random.randint(1, 5)
+        output_material_quantity[1] = output_material_quantity[0]
 
-print(GenMaterialComp("titanium"))
-print(GenMaterialComp("ruby"))
+    elif size == 2:
+        output_material_quantity[0] = random.randint(5, 10)
+        output_material_quantity[1] = output_material_quantity[0]
 
-print({**GenMaterialComp("titanium"), **GenMaterialComp("ruby")})
+    elif size == 3:
+        output_material_quantity[0] = random.randint(10, 15)
+        output_material_quantity[1] = output_material_quantity[0]
+
+    return {output_material_type: output_material_quantity}
+
+def CreatePlanetComp(size: int) -> dict:
+    output_planet_comp: dict = {}
+
+    if size == 1:
+        for i in  range(2):
+            add_material = CreateMaterialComp(size)
+            while list(add_material.keys())[0] in list(output_planet_comp.keys()):
+                add_material = CreateMaterialComp(size)
+
+            output_planet_comp = {**output_planet_comp, **add_material}
+
+    elif size == 2:
+        for i in  range(4):
+            add_material = CreateMaterialComp(size)
+            while list(add_material.keys())[0] in list(output_planet_comp.keys()):
+                add_material = CreateMaterialComp(size)
+                
+            output_planet_comp = {**output_planet_comp, **add_material}
+
+    elif size == 3:
+        for i in  range(6):
+            add_material = CreateMaterialComp(size)
+            while list(add_material.keys())[0] in list(output_planet_comp.keys()):
+                add_material = CreateMaterialComp(size)
+                
+            output_planet_comp = {**output_planet_comp, **add_material}
+    return output_planet_comp
