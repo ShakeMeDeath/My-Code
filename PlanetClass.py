@@ -15,6 +15,33 @@ class Planet:
         
     def delete(self):
         del __class__.planets_list[self]
+        del self
 
-planet1 = Planet("tataouianana lemed", 1, 13_000)
-print(planet1.materials)
+    def DisplayMachines(self, screen_size: int) -> None:
+        between_char = "|"
+
+        print(f'{between_char}', flush=True, end="")
+        for i, machine in enumerate(self.machines):
+            print(f'---', flush=True, end="")
+            print(f'{between_char}', flush=True, end="")
+        print("")
+
+        print(f'{between_char}', flush=True, end="")
+        for i, machine in enumerate(self.machines):
+            print(f' {i+1} ', flush=True, end="")
+            print(f'{between_char}', flush=True, end="")
+        print("")
+        
+        print(f'{between_char}', flush=True, end="")
+        for i, machine in enumerate(self.machines):
+            print(f'{machine.machine_type[0:3].capitalize()}', flush=True, end="")
+            print(f'{between_char}', flush=True, end="")
+
+        print("")
+
+        print(f'{between_char}', flush=True, end="")
+        for i, machine in enumerate(self.machines):
+            print(f'---', flush=True, end="")
+            print(f'{between_char}', flush=True, end="")
+        print("")
+

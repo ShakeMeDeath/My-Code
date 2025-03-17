@@ -11,8 +11,8 @@ class Machine:
         planet_location.machines.append(self)
 
     def delete(self):
-        del __class__.planets_list[self]
-        
+        del self.planet_location.machines[next(i for i, v in enumerate(self.planet_location.machines) if v == self)]
+        del self
 
     def MachineUpgrade(self):
         if self.level[0] < self.level[1]:
